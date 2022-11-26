@@ -25,7 +25,7 @@ const thoughtsController = {
             console.log(err);
             res.status(500).json(err);
         });
-    }
+    },
 
     getThoughtsById({params}, res) {
         Thoughts.findOne({ _id: params.id })
@@ -45,7 +45,7 @@ const thoughtsController = {
     },
 
     updateThoughts({params, body}, res) {
-        Thoughts.findOneAndUpdate({_id: params.id}, body, {new: true: runValidators: true})
+        Thoughts.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
         .populate({path: "reactions", select: "-__v"})
         .select("-__v")
         .then(dbThoughtsData => {
@@ -59,7 +59,7 @@ const thoughtsController = {
             console.log(err);
             res.status(400);
         });
-    }
+    },
 
     deleteThoughts({params}, res) {
         Thoughts.findOneAndDelete({_id: params.id})
@@ -74,7 +74,7 @@ const thoughtsController = {
     },
 
     addReaction({params, body}, res) {
-        Thoughts.findOneAndUpdate({_id: params.thoughtId}, {$push: {reactions: body}}, {new: true: runValidators: true})
+        Thoughts.findOneAndUpdate({_id: params.thoughtId}, {$push: {reactions: body}}, {new: true, runValidators: true})
         .populate({path: "reactions", select: "-__v"})
         .select("-__v")
         .then(dbThoughtsData => {
