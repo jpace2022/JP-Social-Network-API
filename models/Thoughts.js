@@ -24,7 +24,8 @@ const ReactionsSchema = new Schema ({
     {
         toJSON: {
             getters: true
-        }
+        },
+        id: false
         }
     
 );
@@ -66,4 +67,5 @@ const ThoughtsSchema = new Schema(
 
 const Thoughts = model("Thoughts", ThoughtsSchema);
 
+module.exports = ReactionsSchema;
 module.exports = Thoughts;
